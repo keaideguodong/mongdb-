@@ -1,0 +1,33 @@
+https://www.mongodb.com/download-center/community?jmp=nav
+3.4.4 的网盘下载地址 https://pan.baidu.com/s/1mhPejwO#list/path=%2Fwindows soft
+教程 http://www.imooc.com/article/18438
+  
+不勾in。。。
+3.配置
+3.1 创建D:\mongodb\data\log目录，用来存放日志文件；
+3.2 在D:\mongodb\data\log目录里新建mongodb.log，用来存放日志信息；
+3.3 创建D:\mongodb\data\db目录，用来存放数据库数据，
+3.4 并在D:\mongodb目录下创建mongo.config，在文件内部复制如下文本：
+
+##数据文件  此处=后对应到数据所存放的目录
+dbpath=d:\mongodb\data\db
+##日志文件  此处=后对应到日志文件所在路径
+logpath=d:\mongodb\data\log\mongodb.log
+##错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
+logappend=true 
+#启用日志文件，默认启用
+journal=true 
+#这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+quiet=true 
+#端口号 默认为27017
+port=27017 
+
+4.测试是否安装成功
+进入C:\Program Files\MongoDB\Server\3.4\bin文件夹下，点击mongod.exe，如果闪一下退出，说明
+5.安装服务
+用管理员权限打开cmd命令行，输入如下命令安装mongodb服务
+sc create MongoDB binPath= "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe --service --config=D:\mongodb\mongo.config"
+在cmd.exe上输入services.msc打开服务管理器，找到MongoDB服务，设置成自动启动，并启动
+如果启动不成功，先删除服务，使用如下命令：
+sc delete MongoDB
+6.配置环境变量（可省略）
